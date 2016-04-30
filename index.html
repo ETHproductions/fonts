@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ETHproductions</title>
+		<!--<link rel="stylesheet" type="text/css" href="style/style.css">-->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+	</head>
+	<body style="text-align:center">
+		<h1>ETHproductions</h1>
+		<p>Typographer | Game designer | Programmer</p>
+		<hr>
+		<h2 style="padding-top:0px">My fonts</h2>
+		<br>
+		
+		<img src="fs-lost.png">
+		<br><br>
+		<img src="fs-vincent.png">
+		<br><br>
+		<img src="fs-handwritten.png">
+		<br><br>
+		<img src="fs-magnifique.png">
+		<br><br>
+		<img src="fs-dot-serif.png">
+		<br><br>
+		<img src="fs-shattern.png">
+		<br><br>
+		<img src="fs-himali.png">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"><\/script>')</script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script>
+			var currenttab = "",
+				nexttab = "",
+				fading = false,
+				fI = 500,
+				fO = 400;
+			function opentab (tabname) {
+				if (currenttab === tabname) return;
+				if (fading) return void(nexttab = tabname);
+				fading = true;
+				if (currenttab) {
+					$(currenttab).fadeOut(fO);
+					setTimeout(function(){ $(currenttab = tabname).fadeIn(fI); }, fO);
+					setTimeout(function(){ fading = false; if (nexttab) opentab(nexttab), nexttab = ""; }, fO + fI);
+				} else {
+					$(currenttab = tabname).fadeIn(fI);
+					setTimeout(function(){ fading = false; if (nexttab) opentab(nexttab), nexttab = ""; }, fI);
+				}
+			}
+		</script>
+	</body>
+</html>
