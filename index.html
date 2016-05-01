@@ -13,19 +13,7 @@
 		<h2 style="padding-top:0px">My fonts</h2>
 		<br>
 		
-		<img src="fs-lost.png">
-		<br><br>
-		<img src="fs-vincent.png">
-		<br><br>
-		<img src="fs-handwritten.png">
-		<br><br>
-		<img src="fs-magnifique.png">
-		<br><br>
-		<img src="fs-dot-serif.png">
-		<br><br>
-		<img src="fs-shattern.png">
-		<br><br>
-		<img src="fs-himali.png">
+		<div id="fonts"></div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"><\/script>')</script>
@@ -39,20 +27,48 @@
 			var currenttab = "",
 				nexttab = "",
 				fading = false,
-				fI = 500,
-				fO = 400;
+				fonts = {
+					"fs-lost": "This is fs lost.",
+					"fs-vincent": "This is fs vincent.",
+					"fs-handwritten": "This is fs handwritten.",
+					"fs-magnifique": "This is fs magnifique.",
+					"fs-dot-serif": "This is fs dot serif.",
+					"fs-shattern": "This is fs shattern.",
+					"fs-himali": "This is fs himali.",
+					"fs-vandyx": "This is fs vandyx.",
+					"fs-cookie": "This is fs cookie."
+				};
+			Object.getOwnPropertyNames(fonts).forEach(function(id) {
+				if(!fonts.hasOwnProperty(id)) return;
+				$("#fonts").append(
+					$("<a></a>")
+					.css("cursor", "pointer")
+					.click(function() { $("#" + id + "-info").slideDown(); })
+					.append(
+						$("<img>")
+						.attr("src", id + ".png")
+						.attr("id", id)
+					),
+					$("<div></div>")
+					.css("display", "none")
+					.attr("id", id + "-info")
+					.text("<br>")
+					.text(fonts[id]),
+					"<br><br>"
+				);
+			});
 			function opentab (tabname) {
 				if (currenttab === tabname) return;
 				if (fading) return void(nexttab = tabname);
 				fading = true;
-				if (currenttab) {
-					$(currenttab).fadeOut(fO);
-					setTimeout(function(){ $(currenttab = tabname).fadeIn(fI); }, fO);
-					setTimeout(function(){ fading = false; if (nexttab) opentab(nexttab), nexttab = ""; }, fO + fI);
-				} else {
-					$(currenttab = tabname).fadeIn(fI);
-					setTimeout(function(){ fading = false; if (nexttab) opentab(nexttab), nexttab = ""; }, fI);
+				function open () {
+					$(currenttab = tabname).fadeIn(500, function(){
+						fading = false;
+						if (nexttab) opentab(nexttab), nexttab = "";
+					});
 				}
+				if (currenttab) $(currenttab).fadeOut(400, open);
+				else open();
 			}
 		</script>
 	</body>
