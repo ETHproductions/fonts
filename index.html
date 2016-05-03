@@ -27,48 +27,52 @@
 			var currenttab = "",
 				nexttab = "",
 				fading = false,
-				fonts = {
-					"fs-lost": "This is fs lost.",
-					"fs-vincent": "This is fs vincent.",
-					"fs-handwritten": "This is fs handwritten.",
-					"fs-magnifique": "This is fs magnifique.",
-					"fs-dot-serif": "This is fs dot serif.",
-					"fs-shattern": "This is fs shattern.",
-					"fs-himali": "This is fs himali.",
-					"fs-vandyx": "This is fs vandyx.",
-					"fs-cookie": "This is fs cookie."
-				};
-			Object.getOwnPropertyNames(fonts).forEach(function(id) {
-				if(!fonts.hasOwnProperty(id)) return;
+				temp = null,
+				
+				fonts = [
+					["fs-vincent", 989142, "This is fs vincent."],
+					["fs-vandyx", 995787, "This is fs vandyx."],
+					["fs-shattern", 952134, "This is fs shattern."],
+					["fs-lost", 934978, "This is fs lost."],
+					["fs-cookie", 869068, "This is fs cookie."],
+					["fs-himali", 843012, "This is fs himali."],
+					["fs-magnifique", 832160, "This is fs magnifique."],
+					["fs-handwritten", 789262, "This is fs handwritten."],
+					["fs-dot-serif", 749833, "This is fs dot serif."]
+				];
+			
+			fonts.forEach(function(a) {
+				var name = a[0],
+					id = a[1],
+					text = a[2];
 				$("#fonts").append(
 					$("<a></a>")
 					.css("cursor", "pointer")
-					.click(function() { $("#" + id + "-info").slideDown(); })
+					.click(function() { opentab("#" + name + "-info"); })
 					.append(
 						$("<img>")
-						.attr("src", id + ".png")
-						.attr("id", id)
+						.attr("src", name + ".png")
+						.attr("id", name)
 					),
 					$("<div></div>")
-					.css("display", "none")
-					.attr("id", id + "-info")
-					.text("<br>")
-					.text(fonts[id]),
-					"<br><br>"
+					.attr("id", name + "-info")
+					.css("overflow", "hidden")
+					.css("height", 0)
+					.html("<br><p>" + text + "</p>" + ( id ? "<p><a href='http://fontstruct.com/fontstructions/show/" + id + "'>View and download on Fontstruct</a></p>" : "")),
+					"<br>"
 				);
 			});
+			
 			function opentab (tabname) {
-				if (currenttab === tabname) return;
+				if (currenttab === tabname) return void((temp=$(currenttab)).slideUp(400, function() {temp.css("display","block").css("height",0)}), currenttab = "");
 				if (fading) return void(nexttab = tabname);
 				fading = true;
-				function open () {
-					$(currenttab = tabname).fadeIn(500, function(){
-						fading = false;
-						if (nexttab) opentab(nexttab), nexttab = "";
-					});
-				}
-				if (currenttab) $(currenttab).fadeOut(400, open);
-				else open();
+				
+				if (currenttab) (temp=$(currenttab)).slideUp(400, function() {temp.css("display","block").css("height",0)});
+				$(currenttab = tabname).css("display","none").css("height","auto").slideDown(400, function(){
+					fading = false;
+					if (nexttab) opentab(nexttab), nexttab = "";
+				});
 			}
 		</script>
 	</body>
