@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>ETHproductions</title>
+		<title>Fonts - ETHproductions</title>
 		<!--<link rel="stylesheet" type="text/css" href="style/style.css">-->
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -11,7 +11,7 @@
 		<p>Typographer | Game designer | Programmer</p>
 		<hr>
 		<h2 style="padding-top:0px">My fonts</h2>
-		<br>
+		<p>Click on a font for more info.</p>
 		
 		<div id="fonts"></div>
 
@@ -23,6 +23,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		
 		<script>
 			var currenttab = "",
 				nexttab = "",
@@ -30,15 +31,15 @@
 				temp = null,
 				
 				fonts = [
-					["fs-vincent", 989142, "This is fs vincent."],
-					["fs-vandyx", 995787, "This is fs vandyx."],
-					["fs-shattern", 952134, "This is fs shattern."],
-					["fs-lost", 934978, "This is fs lost."],
-					["fs-cookie", 869068, "This is fs cookie."],
-					["fs-himali", 843012, "This is fs himali."],
-					["fs-magnifique", 832160, "This is fs magnifique."],
-					["fs-handwritten", 789262, "This is fs handwritten."],
-					["fs-dot-serif", 749833, "This is fs dot serif."]
+					["fs-vincent", 989142, "is a monospaced font with rounded shapes, designed to be legible at small sizes."],
+					["fs-vandyx", 995787, "is a geometric font designed to be crystal clear at any size."],
+					["fs-shattern", 952134, "is a display font based on the idea of shattered glass."],
+					["fs-lost", 934978, "is a maze font created for the <a href='http://fontstruct.com/news/2014/01/14/competition-inline/'>FontStruct Inline Competition</a>."],
+					["fs-cookie", 869068, "is a serif font where each letter looks like a cookie with a bite taken out of it."],
+					["fs-himali", 843012, "is designed to look like it's made from sticks and stones."],
+					["fs-magnifique", 832160, "is a cursive font, designed for the <a href='http://fontstruct.com/news/2013/05/22/competition-connected-script/'>FontStruct Connected Script Competition</a>."],
+					["fs-handwritten", 789262, "is an experiment in mimicing the look of a pen with FontStruct's geometric shapes."],
+					["fs-dot-serif", 749833, "is, well, a serif font made from dots."]
 				];
 			
 			fonts.forEach(function(a) {
@@ -58,7 +59,9 @@
 					.attr("id", name + "-info")
 					.css("overflow", "hidden")
 					.css("height", 0)
-					.html("<br><p>" + text + "</p>" + ( id ? "<p><a href='http://fontstruct.com/fontstructions/show/" + id + "'>View and download on Fontstruct</a></p>" : "")),
+					.css("padding-left", "15%")
+					.css("padding-right", "15%")
+					.html("<br><p><b>" + name.replace(/-|$/g, " ") + "</b> " + text + "</p>" + ( id ? "<p><a href='http://fontstruct.com/fontstructions/show/" + id + "'>View and download on Fontstruct</a></p>" : "")),
 					"<br>"
 				);
 			});
